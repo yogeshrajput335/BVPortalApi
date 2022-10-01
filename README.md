@@ -16,4 +16,15 @@ dotnet ef database update
 ```
 Download XAMPP from below link
 https://www.apachefriends.org/
+Start Apache & MySql
+Click ADMIN from Control Panel or http://localhost/phpmyadmin/ in Browser
 ```
+
+# MYSQL 
+```
+Username : bvdbuser
+Password : bvdbuser
+Global privileges : Check all
+```
+![Alt text](./Images/CreateServerUser.jpg?raw=true "Create Server User")
+
