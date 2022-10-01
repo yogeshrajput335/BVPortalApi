@@ -12,7 +12,7 @@ dotnet ef database update
 ```
 
 # XAMPP
-![Alt text](Images/img.jpg?raw=true "XAMPP Control Panel")
+![Alt text](./Images/XAMPP_ControlPanel.jpg?raw=true "XAMPP Control Panel")
 ```
 Download XAMPP from below link
 https://www.apachefriends.org/
