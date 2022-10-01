@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wBX4qMTejMqkNoJVqEXOYvJEhi6FGkJDRLEsJ3oPAM8=",
+  "Source": "BVPortalApi",
+  "BasePath": "_content/BVPortalApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
