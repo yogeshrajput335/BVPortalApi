@@ -24,5 +24,16 @@ namespace BVPortalApi.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Asset> Assets { get; set; }
+        public DbSet<AssetAllocation> AssetAllocation { get; set; }
+        public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<HolidayMaster> HolidayMaster { get; set; }
+        public DbSet<Leave> Leave { get; set; }
+        public DbSet<LeaveType> LeaveType { get; set; }
+        public DbSet<Openjobs> Openjobs { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ReferList> ReferList { get; set; }
+        public DbSet<Timesheet> Timesheet { get; set; }
+        public DbSet<TimesheetMaster> TimesheetMaster { get; set; }
+        public DbSet<AssetType> AssetType { get; set; }
     }
 }
