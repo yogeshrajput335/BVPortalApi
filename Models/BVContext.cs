@@ -23,5 +23,6 @@ namespace BVPortalApi.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Asset> Assets { get; set; }
     }
 }
