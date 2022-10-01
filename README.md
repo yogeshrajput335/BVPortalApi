@@ -12,6 +12,7 @@ https://www.c-sharpcorner.com/article/rest-api-with-asp-net-6-and-mysql/
 # MIGRATION 
 
 ```
+dotnet tool install -g dotnet-ef
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```

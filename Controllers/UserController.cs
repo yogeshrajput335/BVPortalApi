@@ -29,6 +29,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Username = s.Username,
                     Password = s.Password,
+                    Email = s.Email,
                     IsActive = s.IsActive
                 }
             ).ToListAsync();
@@ -47,6 +48,7 @@ namespace BVPortalApi.Controllers
             var entity = new User() {
                 Username = User.Username,
                 Password = User.Password,
+                Email = User.Email,
                 IsActive = User.IsActive
             };
             DBContext.Users.Add(entity);
@@ -58,6 +60,7 @@ namespace BVPortalApi.Controllers
             var entity = await DBContext.Users.FirstOrDefaultAsync(s => s.Id == User.Id);
             entity.Username = User.Username;
             entity.Password = User.Password;
+            entity.Email = User.Email;
             entity.IsActive = User.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
