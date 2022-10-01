@@ -1,3 +1,8 @@
+# RUN API APPLICATION
+
+** dotnet run ** 
+#### Swagger Link (change port number as required)
+> https://localhost:7037/swagger/index.html
 # REFERENCE
 ```
 https://jasonwatmore.com/post/2021/10/26/net-5-connect-to-mysql-database-with-entity-framework-core
