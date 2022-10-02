@@ -29,6 +29,7 @@ Click ADMIN from Control Panel or http://localhost/phpmyadmin/ in Browser
 
 # MYSQL 
 ```
+Database name : blueverseportaldb
 Username : bvdbuser
 Password : bvdbuser
 Global privileges : Check all
