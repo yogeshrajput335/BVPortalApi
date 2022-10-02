@@ -455,3 +455,20 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 obj/Debug/net6.0/refint/BVPortalApi.dll
+bin/Debug/net6.0/BVPortalApi.deps.json
+bin/Debug/net6.0/BVPortalApi.dll
+bin/Debug/net6.0/BVPortalApi.pdb
+obj/BVPortalApi.csproj.nuget.dgspec.json
+obj/project.assets.json
+obj/project.nuget.cache
+obj/staticwebassets.pack.sentinel
+obj/Debug/net6.0/BVPortalApi.assets.cache
+obj/Debug/net6.0/BVPortalApi.csproj.AssemblyReference.cache
+obj/Debug/net6.0/BVPortalApi.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/BVPortalApi.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/BVPortalApi.dll
+obj/Debug/net6.0/BVPortalApi.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/BVPortalApi.pdb
+obj/Debug/net6.0/project.razor.json
+obj/Debug/net6.0/ref/BVPortalApi.dll
+obj/Debug/net6.0/refint/BVPortalApi.dll
