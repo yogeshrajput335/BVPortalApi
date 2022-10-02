@@ -20,8 +20,8 @@ namespace BVPortalApi.CommonFeatures
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("hr@blueversesystems.com"));
             email.To.Add(MailboxAddress.Parse("yogeshrajput335@gmail.com"));
-            email.Subject = "Test Email Subject";
-            email.Body = new TextPart(TextFormat.Html) { Text = "<h1>Example HTML Message Body</h1>" };
+            email.Subject = "USER DATA - Test Email Subject";
+            email.Body = new TextPart(TextFormat.Html) { Text = "<h1>User DATA - Example HTML Message Body</h1>" };
 
             // send email
             using var smtp = new SmtpClient();

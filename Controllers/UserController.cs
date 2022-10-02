@@ -37,9 +37,7 @@ namespace BVPortalApi.Controllers
                     IsActive = s.IsActive
                 }
             ).ToListAsync();
-
-            emailService.Send();
-
+            
             if (List.Count < 0)
             {
                 return NotFound();

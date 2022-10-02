@@ -454,3 +454,4 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+obj/Debug/net6.0/refint/BVPortalApi.dll
