@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using BVPortalApi.CommonFeatures;
+using BVPortalApi.CommonFeatures.Contracts;
 using BVPortalApi.DTO;
 using BVPortalApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +17,12 @@ namespace BVPortalApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly BVContext DBContext;
+        private readonly IEmailService emailService;
 
-        public UserController( BVContext DBContext)
+        public UserController(BVContext DBContext,IEmailService emailService)
         {
             this.DBContext = DBContext;
+            this.emailService = emailService;
         }
         [HttpGet("GetUsers")]
         public async Task<ActionResult<List<UserDTO>>> Get()
@@ -33,6 +37,8 @@ namespace BVPortalApi.Controllers
                     IsActive = s.IsActive
                 }
             ).ToListAsync();
+
+            emailService.Send();
 
             if (List.Count < 0)
             {

@@ -15,6 +15,7 @@ https://www.c-sharpcorner.com/article/rest-api-with-asp-net-6-and-mysql/
 dotnet tool install -g dotnet-ef
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+dotnet ef database update YourMigrationName
 ```
 
 # XAMPP
@@ -33,4 +34,10 @@ Password : bvdbuser
 Global privileges : Check all
 ```
 ![Alt text](./Images/CreateServerUser.jpg?raw=true "Create Server User")
+
+# EMAIL SERVICE
+
+* https://jasonwatmore.com/post/2022/03/11/net-6-send-an-email-via-smtp-with-mailkit
+* https://ethereal.email/ > jedidiah.hamill63@ethereal.email (uq1xRSC6FzCehSU1dA)
+
 
