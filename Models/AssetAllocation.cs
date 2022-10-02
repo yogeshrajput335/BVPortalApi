@@ -11,8 +11,8 @@ namespace BVPortalApi.Models
         public int AssetId { get; set; }
         public int AllocatedById { get; set; }
         public int AllocatedToId { get; set; }
-        public string? AllocatedDate{ get; set; }
-        public string? ReturnDate { get; set; }
+        public DateTime AllocatedDate{ get; set; }
+        public DateTime ReturnDate { get; set; }
         public string? Status { get; set; }
         public bool IsActive { get; set; }
     }
