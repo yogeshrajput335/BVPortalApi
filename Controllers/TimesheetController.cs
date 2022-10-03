@@ -34,7 +34,7 @@ namespace BVPortalApi.Controllers
                     MasterId = s.MasterId,
                     Month=s.Month,
                     Year=s.Year,
-                    Week=s.Week,
+                    Week=s.week,
                     Status = s.Status,
                     IsActive = s.IsActive
                 }
@@ -57,7 +57,7 @@ namespace BVPortalApi.Controllers
                     MasterId = s.MasterId,
                     Month=s.Month,
                     Year=s.Year,
-                    Week=s.Week,
+                    week=s.Week,
                     Status = s.Status,
                     IsActive = s.IsActive
             };
@@ -73,7 +73,7 @@ namespace BVPortalApi.Controllers
             entity.MasterId = Timesheet.MasterId;
             entity.Month = Timesheet.Month;
             entity.Year = Timesheet.Year;
-            entity.Week = Timesheet.Week;
+            entity.week = Timesheet.Week;
             entity.Status = Timesheet.Status;
             entity.IsActive = Timesheet.IsActive;
             await DBContext.SaveChangesAsync();
