@@ -33,6 +33,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Username = s.Username,
                     Password = s.Password,
+                    UserType = s.UserType,
                     Email = s.Email,
                     IsActive = s.IsActive
                 }
@@ -52,6 +53,7 @@ namespace BVPortalApi.Controllers
             var entity = new User() {
                 Username = User.Username,
                 Password = User.Password,
+                UserType = User.UserType,
                 Email = User.Email,
                 IsActive = User.IsActive
             };
@@ -64,6 +66,7 @@ namespace BVPortalApi.Controllers
             var entity = await DBContext.Users.FirstOrDefaultAsync(s => s.Id == User.Id);
             entity.Username = User.Username;
             entity.Password = User.Password;
+            entity.UserType = User.UserType;
             entity.Email = User.Email;
             entity.IsActive = User.IsActive;
             await DBContext.SaveChangesAsync();
@@ -79,5 +82,16 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        [HttpPost("VerifyUser")]
+        public async Task<UserWithToken> VerifyUser([FromBody] UserDTO u1) {
+            UserDTO u = await DBContext.Users.Where(x=>x.Username==u1.Username && x.Password==u1.Password)
+            .Select( x=> new UserDTO
+            {
+                Username = x.Username,
+                UserType = x.UserType,
+            }).FirstOrDefaultAsync();
+            return new UserWithToken { user = u,token="test"};
+        }
+
     }
 }
