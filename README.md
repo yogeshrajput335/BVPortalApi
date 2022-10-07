@@ -40,5 +40,6 @@ Global privileges : Check all
 
 * https://jasonwatmore.com/post/2022/03/11/net-6-send-an-email-via-smtp-with-mailkit
 * https://ethereal.email/ > jedidiah.hamill63@ethereal.email (uq1xRSC6FzCehSU1dA)
+* https://www.w3schools.com/howto/howto_css_login_form.asp
 
 
