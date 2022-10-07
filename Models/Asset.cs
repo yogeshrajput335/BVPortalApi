@@ -12,6 +12,5 @@ namespace BVPortalApi.Models
         public int TypeId { get; set; }
         public string? ModelNumber { get; set; }
         public string? Status { get; set; }
-        public bool IsActive { get; set; }
     }
 }

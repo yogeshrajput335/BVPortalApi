@@ -35,8 +35,7 @@ namespace BVPortalApi.Controllers
                 FromDate=s.FromDate,
                 ToDate=s.ToDate,
                 Reason = s.Reason,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
                 }
             ).ToListAsync();
             
@@ -58,8 +57,7 @@ namespace BVPortalApi.Controllers
                 FromDate=s.FromDate,
                 ToDate=s.ToDate,
                 Reason = s.Reason,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.Leave.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -74,7 +72,6 @@ namespace BVPortalApi.Controllers
             entity.FromDate = Leave.FromDate;
             entity.ToDate = Leave.ToDate;
             entity.Status = Leave.Status;
-            entity.IsActive = Leave.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

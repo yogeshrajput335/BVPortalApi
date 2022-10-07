@@ -14,6 +14,5 @@ namespace BVPortalApi.Models
         public DateTime AllocatedDate{ get; set; }
         public DateTime ReturnDate { get; set; }
         public string? Status { get; set; }
-        public bool IsActive { get; set; }
     }
 }

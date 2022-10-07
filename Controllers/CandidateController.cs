@@ -33,8 +33,7 @@ namespace BVPortalApi.Controllers
                     LastName = s.LastName,
                     PhoneNo = s.PhoneNo,
                     Email=s.Email,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -55,8 +54,7 @@ namespace BVPortalApi.Controllers
                     LastName = s.LastName,
                     PhoneNo = s.PhoneNo,
                     Email=s.Email,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
             };
             DBContext.Candidates.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -70,7 +68,6 @@ namespace BVPortalApi.Controllers
             entity.PhoneNo = Candidate.PhoneNo;
             entity.Email = Candidate.Email;
             entity.Status = Candidate.Status;
-            entity.IsActive = Candidate.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

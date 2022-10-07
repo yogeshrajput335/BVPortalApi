@@ -32,8 +32,7 @@ namespace BVPortalApi.Controllers
                     HolidayName = s.HolidayName,
                     Description = s.Description,
                     Date = s.Date,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
 
@@ -55,8 +54,7 @@ namespace BVPortalApi.Controllers
                     HolidayName = s.HolidayName,
                     Description = s.Description,
                     Date = s.Date,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
             };
             DBContext.HolidayMaster.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -70,7 +68,6 @@ namespace BVPortalApi.Controllers
             entity.Description = HolidayMaster.Description;
             entity.Date = HolidayMaster.Date;
             entity.Status = HolidayMaster.Status;
-            entity.IsActive = HolidayMaster.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

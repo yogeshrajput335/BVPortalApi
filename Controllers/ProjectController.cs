@@ -31,8 +31,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     ProjectName = s.ProjectName,
                     Description = s.Description,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -50,8 +49,7 @@ namespace BVPortalApi.Controllers
             var entity = new Project() {
                     ProjectName = s.ProjectName,
                     Description = s.Description,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
             };
             DBContext.Project.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -63,7 +61,6 @@ namespace BVPortalApi.Controllers
             entity.ProjectName = Project.ProjectName;
             entity.Description = Project.Description;
             entity.Status = Project.Status;
-            entity.IsActive = Project.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

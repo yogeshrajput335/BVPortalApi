@@ -32,8 +32,7 @@ namespace BVPortalApi.Controllers
                     Name = s.Name,
                     TypeId = s.TypeId,
                     ModelNumber = s.ModelNumber,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -52,8 +51,7 @@ namespace BVPortalApi.Controllers
                 Name = s.Name,
                 TypeId = s.TypeId,
                 ModelNumber = s.ModelNumber,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.Assets.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -66,7 +64,6 @@ namespace BVPortalApi.Controllers
             entity.TypeId = Asset.TypeId;
             entity.ModelNumber = Asset.ModelNumber;
             entity.Status = Asset.Status;
-            entity.IsActive = Asset.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

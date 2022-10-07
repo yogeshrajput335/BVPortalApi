@@ -31,8 +31,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Name = s.Name,
                     Description = s.Description,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -50,8 +49,7 @@ namespace BVPortalApi.Controllers
             var entity = new AssetType() {
                 Name = s.Name,
                 Description = s.Description,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.AssetType.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -63,7 +61,6 @@ namespace BVPortalApi.Controllers
             entity.Name = AssetType.Name;
             entity.Description = AssetType.Description;
             entity.Status = AssetType.Status;
-            entity.IsActive = AssetType.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

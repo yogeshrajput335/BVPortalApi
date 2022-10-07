@@ -29,14 +29,10 @@ namespace BVPortalApi.Controllers
                 s => new TimesheetDTO
                 {
                     Id = s.Id,
-                    UserId = s.UserId,
-                    FullName=s.FullName,
-                    MasterId = s.MasterId,
-                    Month=s.Month,
-                    Year=s.Year,
-                    Week=s.week,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    EmployeeId = s.EmployeeId,
+                    ProjectId=s.ProjectId,
+                    WeekEndingDate = s.WeekEndingDate,
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -52,14 +48,10 @@ namespace BVPortalApi.Controllers
         [HttpPost("InsertTimesheet")]
         public async Task < HttpStatusCode > InsertTimesheet(TimesheetDTO s) {
             var entity = new Timesheet() {
-                    UserId = s.UserId,
-                    FullName=s.FullName,
-                    MasterId = s.MasterId,
-                    Month=s.Month,
-                    Year=s.Year,
-                    week=s.Week,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    EmployeeId = s.EmployeeId,
+                    ProjectId=s.ProjectId,
+                    WeekEndingDate = s.WeekEndingDate,
+                    Status = s.Status
             };
             DBContext.Timesheet.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -68,14 +60,10 @@ namespace BVPortalApi.Controllers
         [HttpPut("UpdateTimesheet")]
         public async Task<HttpStatusCode> UpdateTimesheet(TimesheetDTO Timesheet) {
             var entity = await DBContext.Timesheet.FirstOrDefaultAsync(s => s.Id == Timesheet.Id);
-            entity.UserId = Timesheet.UserId;
-            entity.FullName = Timesheet.FullName;
-            entity.MasterId = Timesheet.MasterId;
-            entity.Month = Timesheet.Month;
-            entity.Year = Timesheet.Year;
-            entity.week = Timesheet.Week;
+            entity.EmployeeId = Timesheet.EmployeeId;
+            entity.ProjectId=Timesheet.ProjectId;
+            entity.WeekEndingDate = Timesheet.WeekEndingDate;
             entity.Status = Timesheet.Status;
-            entity.IsActive = Timesheet.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

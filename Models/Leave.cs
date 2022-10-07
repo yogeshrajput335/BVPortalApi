@@ -17,6 +17,5 @@ namespace BVPortalApi.Models
         public DateTime ToDate { get; set; }
         public string? Reason{ get; set; }
         public string? Status { get; set; }
-        public bool IsActive { get; set; }
     }
 }

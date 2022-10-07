@@ -40,6 +40,12 @@ Global privileges : Check all
 
 * https://jasonwatmore.com/post/2022/03/11/net-6-send-an-email-via-smtp-with-mailkit
 * https://ethereal.email/ > jedidiah.hamill63@ethereal.email (uq1xRSC6FzCehSU1dA)
-* https://www.w3schools.com/howto/howto_css_login_form.asp
 
+# Entity Framework
+* https://www.entityframeworktutorial.net/code-first/configure-many-to-many-relationship-in-code-first.aspx
+
+# Timesheet DB Struction Reference
+* https://www.dropbox.com/s/uadl5689v9j0jcs/timesheet_model_schema.sql
+* https://www.dropbox.com/s/3wo9qd2fdpe5yow/timesheet_model.png
+* https://stackoverflow.com/questions/10526625/database-schema-that-manages-weekly-timesheets
 

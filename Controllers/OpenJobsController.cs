@@ -33,8 +33,7 @@ namespace BVPortalApi.Controllers
                     Description = s.Description,
                     StartDate = s.StartDate,
                     Country = s.Country,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -54,8 +53,7 @@ namespace BVPortalApi.Controllers
                 Description = s.Description,
                 StartDate = s.StartDate,
                 Country = s.Country,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.Openjobs.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -69,7 +67,6 @@ namespace BVPortalApi.Controllers
             entity.StartDate = Openjobs.StartDate;
             entity.Country = Openjobs.Country;
             entity.Status = Openjobs.Status;
-            entity.IsActive = Openjobs.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

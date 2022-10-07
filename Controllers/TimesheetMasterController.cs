@@ -31,8 +31,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Year = s.Year,
                     Month = s.Month,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -50,8 +49,7 @@ namespace BVPortalApi.Controllers
             var entity = new TimesheetMaster() {
                 Year = s.Year,
                 Month = s.Month,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.TimesheetMaster.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -63,7 +61,6 @@ namespace BVPortalApi.Controllers
             entity.Year = TimesheetMaster.Year;
             entity.Month = TimesheetMaster.Month;
             entity.Status = TimesheetMaster.Status;
-            entity.IsActive = TimesheetMaster.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

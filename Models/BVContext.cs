@@ -35,5 +35,11 @@ namespace BVPortalApi.Models
         public DbSet<Timesheet> Timesheet { get; set; }
         public DbSet<TimesheetMaster> TimesheetMaster { get; set; }
         public DbSet<AssetType> AssetType { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<ProjectAssignment> ProjectAssignment { get; set; }
+        public DbSet<TimesheetApproval> TimesheetApproval { get; set; }
+        public DbSet<TimesheetDetail> TimesheetDetail { get; set; }
+
     }
 }

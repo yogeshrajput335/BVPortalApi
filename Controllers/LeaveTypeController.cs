@@ -31,8 +31,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Type = s.Type,
                     Description = s.Description,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -50,8 +49,7 @@ namespace BVPortalApi.Controllers
             var entity = new LeaveType() {
                 Type = s.Type,
                 Description = s.Description,
-                Status = s.Status,
-                IsActive = s.IsActive
+                Status = s.Status
             };
             DBContext.LeaveType.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -63,7 +61,6 @@ namespace BVPortalApi.Controllers
             entity.Type = LeaveType.Type;
             entity.Description = LeaveType.Description;
             entity.Status = LeaveType.Status;
-            entity.IsActive = LeaveType.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }

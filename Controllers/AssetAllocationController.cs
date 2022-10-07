@@ -33,8 +33,7 @@ namespace BVPortalApi.Controllers
                     AllocatedToId = s.AllocatedToId,
                     AllocatedDate = s.AllocatedDate,
                     ReturnDate=s.ReturnDate,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
                 }
             ).ToListAsync();
             
@@ -55,8 +54,7 @@ namespace BVPortalApi.Controllers
                     AllocatedToId = s.AllocatedToId,
                     AllocatedDate = s.AllocatedDate,
                     ReturnDate=s.ReturnDate,
-                    Status = s.Status,
-                    IsActive = s.IsActive
+                    Status = s.Status
             };
             DBContext.AssetAllocation.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -71,7 +69,6 @@ namespace BVPortalApi.Controllers
             entity.AllocatedDate = AssetAllocation.AllocatedDate;
             entity.ReturnDate = AssetAllocation.ReturnDate;
             entity.Status = AssetAllocation.Status;
-            entity.IsActive = AssetAllocation.IsActive;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
