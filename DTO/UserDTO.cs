@@ -12,7 +12,7 @@ namespace BVPortalApi.DTO
         public string? Password { get; set; }
         public string? UserType { get; set; }
         public string? Email { get; set; }
-        public bool IsActive { get; set; }
+        public string? Status { get; set; }
     }
     public class UserWithToken{
         public UserDTO user { get; set; }
