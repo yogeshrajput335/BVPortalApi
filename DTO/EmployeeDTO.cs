@@ -15,6 +15,5 @@ namespace BVPortalApi.DTO
         public string? EmployeeType { get; set; }
         public int UserId { get; set; }
         public string? Status { get; set; }
-        public bool IsActive { get; set; }
     }
 }

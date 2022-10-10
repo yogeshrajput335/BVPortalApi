@@ -11,6 +11,5 @@ namespace BVPortalApi.DTO
         public string? Year { get; set; }
         public string? Month { get; set; }
         public string? Status { get; set; }
-        public bool IsActive { get; set; }
     }
 }
