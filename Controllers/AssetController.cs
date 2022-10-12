@@ -22,7 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
-        [HttpGet("GetAssets")]
+        [HttpGet("GetAsset")]
         public async Task<ActionResult<List<AssetDTO>>> Get()
         {
             var List = await DBContext.Assets.Select(
@@ -31,6 +31,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     Name = s.Name,
                     TypeId = s.TypeId,
+                    Type = s.AssetType.Name,
                     ModelNumber = s.ModelNumber,
                     Status = s.Status
                 }
