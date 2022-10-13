@@ -28,9 +28,13 @@ namespace BVPortalApi.Controllers
             var List = await DBContext.AssetAllocation.Select(
                 s => new AssetAllocationDTO
                 {
+                    Id = s.Id,
                     AssetId = s.AssetId,
                     AllocatedById = s.AllocatedById,
                     AllocatedToId = s.AllocatedToId,
+                    AssetName = s.Asset.Name,
+                    AllocatedBy = s.AllocatedBy.FirstName+" "+s.AllocatedBy.LastName,
+                    AllocatedTo = s.AllocatedTo.FirstName+" "+s.AllocatedTo.LastName,
                     AllocatedDate = s.AllocatedDate,
                     ReturnDate=s.ReturnDate,
                     Status = s.Status
