@@ -34,7 +34,6 @@ namespace BVPortalApi.Controllers
                     Email = s.Email,
                     PhoneNumber = s.PhoneNumber,
                     EmployeeType = s.EmployeeType,
-                    UserId =s.UserId,
                     Status = s.Status
                 }
             ).ToListAsync();
@@ -56,7 +55,6 @@ namespace BVPortalApi.Controllers
                     Email = s.Email,
                     PhoneNumber = s.PhoneNumber,
                     EmployeeType = s.EmployeeType,
-                    UserId =s.UserId,
                     Status = s.Status
             };
             DBContext.Employee.Add(entity);
@@ -71,7 +69,6 @@ namespace BVPortalApi.Controllers
             entity.Email = Employee.Email;
             entity.PhoneNumber = Employee.PhoneNumber;
             entity.EmployeeType = Employee.EmployeeType;
-            entity.UserId = Employee.UserId;
             entity.Status = Employee.Status;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;

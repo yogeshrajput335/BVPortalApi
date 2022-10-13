@@ -13,6 +13,8 @@ namespace BVPortalApi.DTO
         public string? UserType { get; set; }
         public string? Email { get; set; }
         public string? Status { get; set; }
+        public int EmployeeId { get; set; }
+        public string? Employee { get; set; }
     }
     public class UserWithToken{
         public UserDTO user { get; set; }

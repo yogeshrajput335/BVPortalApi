@@ -13,9 +13,8 @@ namespace BVPortalApi.Models
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public string? EmployeeType { get; set; }
-        public int UserId { get; set; }
         public string? Status { get; set; }
-        public virtual User User { get; set; }
+        public User User { get; set; }
         public ICollection<Timesheet> Timesheet { get; set; }
         public ICollection<ProjectAssignment> ProjectAssignment { get; set; }
         public ICollection<TimesheetDetail> TimesheetDetail { get; set; }
