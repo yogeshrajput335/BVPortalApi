@@ -29,9 +29,10 @@ namespace BVPortalApi.Controllers
                 s => new LeaveDTO
                 {
                 Id=s.Id,
-                FirstName = s.FirstName,
-                LastName=s.LastName,
+                EmployeeId = s.EmployeeId,
+                FullName = s.Employee.FirstName+" "+s.Employee.LastName,
                 LeaveTypeId=s.LeaveTypeId,
+                LeaveType =s.LeaveType.Type,
                 FromDate=s.FromDate,
                 ToDate=s.ToDate,
                 Reason = s.Reason,
@@ -51,8 +52,7 @@ namespace BVPortalApi.Controllers
         [HttpPost("InsertLeave")]
         public async Task < HttpStatusCode > InsertLeave(LeaveDTO s) {
             var entity = new Leave() {
-                FirstName = s.FirstName,
-                LastName=s.LastName,
+                EmployeeId = s.EmployeeId,
                 LeaveTypeId=s.LeaveTypeId,
                 FromDate=s.FromDate,
                 ToDate=s.ToDate,
@@ -66,8 +66,7 @@ namespace BVPortalApi.Controllers
         [HttpPut("UpdateLeave")]
         public async Task<HttpStatusCode> UpdateLeave(LeaveDTO Leave) {
             var entity = await DBContext.Leave.FirstOrDefaultAsync(s => s.Id == Leave.Id);
-            entity.FirstName = Leave.FirstName;
-            entity.LastName = Leave.LastName;
+            entity.EmployeeId = Leave.EmployeeId;
             entity.LeaveTypeId = Leave.LeaveTypeId;
             entity.FromDate = Leave.FromDate;
             entity.ToDate = Leave.ToDate;
