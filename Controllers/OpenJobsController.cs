@@ -30,6 +30,7 @@ namespace BVPortalApi.Controllers
                 {
                     Id = s.Id,
                     JobName = s.JobName,
+                    Profile = s.Profile,
                     Description = s.Description,
                     StartDate = s.StartDate,
                     Country = s.Country,
@@ -51,6 +52,7 @@ namespace BVPortalApi.Controllers
             var entity = new Openjobs() {
                 JobName = s.JobName,
                 Description = s.Description,
+                Profile = s.Profile,
                 StartDate = s.StartDate,
                 Country = s.Country,
                 Status = s.Status
@@ -63,6 +65,7 @@ namespace BVPortalApi.Controllers
         public async Task<HttpStatusCode> UpdateOpenjobs(OpenjobsDTO Openjobs) {
             var entity = await DBContext.Openjobs.FirstOrDefaultAsync(s => s.Id == Openjobs.Id);
             entity.JobName = Openjobs.JobName;
+            entity.Profile = Openjobs.Profile;
             entity.Description = Openjobs.Description;
             entity.StartDate = Openjobs.StartDate;
             entity.Country = Openjobs.Country;
