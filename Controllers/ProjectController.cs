@@ -30,7 +30,12 @@ namespace BVPortalApi.Controllers
                 {
                     Id = s.Id,
                     ProjectName = s.ProjectName,
+                    ClientId = s.ClientId,
+                    ClientName = s.Client.ClientName,
                     Description = s.Description,
+                    StartDate =s.StartDate,
+                    EndDate = s.EndDate,
+                    ProjectType = s.ProjectType,
                     Status = s.Status
                 }
             ).ToListAsync();
@@ -47,8 +52,13 @@ namespace BVPortalApi.Controllers
         [HttpPost("InsertProject")]
         public async Task < HttpStatusCode > InsertProject(ProjectDTO s) {
             var entity = new Project() {
+                     Id = s.Id,
                     ProjectName = s.ProjectName,
+                    ClientId = s.ClientId,
                     Description = s.Description,
+                    StartDate =s.StartDate,
+                    EndDate = s.EndDate,
+                    ProjectType = s.ProjectType,
                     Status = s.Status
             };
             DBContext.Project.Add(entity);
@@ -59,7 +69,11 @@ namespace BVPortalApi.Controllers
         public async Task<HttpStatusCode> UpdateProject(ProjectDTO Project) {
             var entity = await DBContext.Project.FirstOrDefaultAsync(s => s.Id == Project.Id);
             entity.ProjectName = Project.ProjectName;
+            entity.ClientId = Project.ClientId;
             entity.Description = Project.Description;
+            entity.StartDate = Project.StartDate;
+            entity.EndDate = Project.EndDate;
+            entity.ProjectType = Project.ProjectType;
             entity.Status = Project.Status;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
