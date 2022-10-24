@@ -80,5 +80,24 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        //MoveToCandidate
+        [HttpDelete("MoveToCandidate/{Id}/{EmployeeId}")]
+        public async Task < HttpStatusCode > MoveToCandidate(int Id,int EmployeeId) {
+            var entity = await DBContext.ReferList.FirstOrDefaultAsync(s => s.Id == Id);
+            entity.Status = "Moved to candidate";
+
+             var candidate = new Candidate() {
+                    FirstName = entity.FirstName,
+                    LastName = entity.LastName,
+                    PhoneNo = entity.PhoneNo,
+                    Email = entity.Email,
+                    Status = "REFERRED",
+                    ReferBy = EmployeeId
+            };
+            DBContext.Candidates.Add(candidate);
+
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
     }
 }

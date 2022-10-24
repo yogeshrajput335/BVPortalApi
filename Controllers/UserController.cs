@@ -101,6 +101,7 @@ namespace BVPortalApi.Controllers
                     Username = x.Username,
                     UserType = x.UserType,
                     Email = x.Email,
+                    EmployeeId = x.EmployeeId
                 }).FirstOrDefaultAsync();
                 return new UserWithToken { user = u,token="test"};
             }

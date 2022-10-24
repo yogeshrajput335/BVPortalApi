@@ -33,7 +33,9 @@ namespace BVPortalApi.Controllers
                     LastName = s.LastName,
                     PhoneNo = s.PhoneNo,
                     Email=s.Email,
-                    Status = s.Status
+                    Status = s.Status,
+                    ReferBy = s.ReferBy,
+                    ReferByName = s.Employee.FirstName + " "+s.Employee.LastName
                 }
             ).ToListAsync();
             
@@ -54,7 +56,8 @@ namespace BVPortalApi.Controllers
                     LastName = s.LastName,
                     PhoneNo = s.PhoneNo,
                     Email=s.Email,
-                    Status = s.Status
+                    Status = s.Status,
+                    ReferBy = s.ReferBy
             };
             DBContext.Candidates.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -68,6 +71,7 @@ namespace BVPortalApi.Controllers
             entity.PhoneNo = Candidate.PhoneNo;
             entity.Email = Candidate.Email;
             entity.Status = Candidate.Status;
+            entity.ReferBy = Candidate.ReferBy;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
