@@ -82,5 +82,46 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        [HttpGet("GetProjectEmpTree")]
+        public async Task<ActionResult<List<ProjectEmpTreeDTO>>> GetProjectEmpTree()
+        {
+            var ProjectList = await DBContext.Project.Select(x=>x).OrderBy(x=>x.ProjectName).ToListAsync();
+             
+            var List = await DBContext.ProjectAssignment.Select(
+                s => new ProjectAssignmentDTO
+                {
+                    Id = s.Id,
+                    ProjectId = s.ProjectId,
+                    EmployeeId  = s.EmployeeId,
+                    ProjectName = s.Project.ProjectName,
+                    EmployeeName  = s.Employee.FirstName + " " + s.Employee.LastName,
+                    Notes = s.Notes,
+                    StartDate = s.StartDate,
+                    EndDate = s.EndDate
+                   }
+            ).ToListAsync();
+            List<ProjectEmpTreeDTO> tree = new List<ProjectEmpTreeDTO>();
+            foreach (var item in ProjectList)
+            {
+                List<ProjectEmpTreeDTO> children = new List<ProjectEmpTreeDTO>();
+                var EmpAssigned = List.Where(x=>x.ProjectId == item.Id);
+                if(EmpAssigned.Any()){
+                    foreach (var emp in EmpAssigned)
+                    {
+                        children.Add(new ProjectEmpTreeDTO {Name = emp.EmployeeName});
+                    }
+                }
+                tree.Add(new ProjectEmpTreeDTO {Name = item.ProjectName,Children=children});
+            }
+            
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return tree;
+            }
+        }
     }
 }
