@@ -12,6 +12,8 @@ namespace BVPortalApi.Models
         public string? PersonalEmailId { get; set; }
         public string? PhoneNumber { get; set; }
         public string? WorkEmail { get; set; }
+        public string? EmergencyContactName { get; set; }
+        public int EmergencyContactNumber { get; set; }
         public Employee Employee { get; set; }
     }
 }
