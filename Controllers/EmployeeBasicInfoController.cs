@@ -32,9 +32,16 @@ namespace BVPortalApi.Controllers
                     EmployeeName = s.Employee.FirstName + " "+ s.Employee.LastName,
                     FatherName = s.FatherName,
                     MotherName = s.MotherName,
+                    BloodGroup = s.BloodGroup,
+                    PersonalEmailId = s.PersonalEmailId,
                     DateOfBirth = s.DateOfBirth,
                     IsMarried = s.IsMarried,
-                    IsBothAddressSame = s.IsBothAddressSame
+                    MaritalStatus = s.MaritalStatus,
+                    SpouseName = s.SpouseName,
+                    PermanentAddress = s.PermanentAddress,
+                    IsBothAddressSame = s.IsBothAddressSame,
+                    CurrentAddress = s.CurrentAddress,
+                    Gender = s.Gender
                 }
             ).ToListAsync();
             
@@ -59,9 +66,16 @@ namespace BVPortalApi.Controllers
                     EmployeeName = s.Employee.FirstName + " "+ s.Employee.LastName,
                     FatherName = s.FatherName,
                     MotherName = s.MotherName,
+                    BloodGroup = s.BloodGroup,
+                    PersonalEmailId = s.PersonalEmailId,
                     DateOfBirth = s.DateOfBirth,
                     IsMarried = s.IsMarried,
-                    IsBothAddressSame = s.IsBothAddressSame
+                    MaritalStatus = s.MaritalStatus,
+                    SpouseName = s.SpouseName,
+                    PermanentAddress = s.PermanentAddress,
+                    IsBothAddressSame = s.IsBothAddressSame,
+                    CurrentAddress = s.CurrentAddress,
+                    Gender = s.Gender
                 }
             ).FirstOrDefaultAsync();
             
@@ -80,9 +94,16 @@ namespace BVPortalApi.Controllers
                     EmployeeId = s.EmployeeId,
                     FatherName = s.FatherName,
                     MotherName = s.MotherName,
+                    BloodGroup = s.BloodGroup,
+                    PersonalEmailId = s.PersonalEmailId,
                     DateOfBirth = s.DateOfBirth,
                     IsMarried = s.IsMarried,
+                    MaritalStatus = s.MaritalStatus,
+                    SpouseName = s.SpouseName,
+                    PermanentAddress = s.PermanentAddress,
                     IsBothAddressSame = s.IsBothAddressSame,
+                    CurrentAddress = s.CurrentAddress,
+                    Gender = s.Gender
             };
             DBContext.EmployeeBasicInfo.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -93,9 +114,16 @@ namespace BVPortalApi.Controllers
             var entity = await DBContext.EmployeeBasicInfo.FirstOrDefaultAsync(s => s.Id == Employee.Id);
             entity.FatherName = Employee.FatherName;
             entity.MotherName = Employee.MotherName;
+            entity.BloodGroup = Employee.BloodGroup;
+            entity.PersonalEmailId = Employee.PersonalEmailId;
             entity.DateOfBirth = Employee.DateOfBirth;
             entity.IsMarried = Employee.IsMarried;
+            entity.MaritalStatus = Employee.MaritalStatus;
+            entity.SpouseName = Employee.SpouseName;
+            entity.PermanentAddress = Employee.PermanentAddress;
             entity.IsBothAddressSame = Employee.IsBothAddressSame;
+            entity.CurrentAddress = Employee.CurrentAddress;
+            entity.Gender = Employee.Gender;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
