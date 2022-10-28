@@ -85,7 +85,9 @@ namespace BVPortalApi.Controllers
         [HttpGet("GetProjectEmpTree")]
         public async Task<ActionResult<List<ProjectEmpTreeDTO>>> GetProjectEmpTree()
         {
-            var ProjectList = await DBContext.Project.Select(x=>x).OrderBy(x=>x.ProjectName).ToListAsync();
+            
+            var ClientList = await DBContext.Client.Where(x=>x.Status=="ACTIVE").Select(x=>x).OrderBy(x=>x.ClientName).ToListAsync();
+            var ProjectList = await DBContext.Project.Where(x=>x.Status=="APPROVED").Select(x=>x).OrderBy(x=>x.ProjectName).ToListAsync();
              
             var List = await DBContext.ProjectAssignment.Select(
                 s => new ProjectAssignmentDTO
@@ -101,17 +103,23 @@ namespace BVPortalApi.Controllers
                    }
             ).ToListAsync();
             List<ProjectEmpTreeDTO> tree = new List<ProjectEmpTreeDTO>();
-            foreach (var item in ProjectList)
+            foreach (var c in ClientList)
             {
-                List<ProjectEmpTreeDTO> children = new List<ProjectEmpTreeDTO>();
-                var EmpAssigned = List.Where(x=>x.ProjectId == item.Id);
-                if(EmpAssigned.Any()){
-                    foreach (var emp in EmpAssigned)
-                    {
-                        children.Add(new ProjectEmpTreeDTO {Name = emp.EmployeeName});
+                List<ProjectEmpTreeDTO> ch = new List<ProjectEmpTreeDTO>();
+                var ProAssigned = ProjectList.Where(x=>x.ClientId == c.Id);
+                foreach (var item in ProAssigned)
+                {
+                    List<ProjectEmpTreeDTO> children = new List<ProjectEmpTreeDTO>();
+                    var EmpAssigned = List.Where(x=>x.ProjectId == item.Id);
+                    if(EmpAssigned.Any()){
+                        foreach (var emp in EmpAssigned)
+                        {
+                            children.Add(new ProjectEmpTreeDTO {Name = emp.EmployeeName});
+                        }
                     }
+                    ch.Add(new ProjectEmpTreeDTO {Name = "[PROJECT] "+item.ProjectName,Children=children});
                 }
-                tree.Add(new ProjectEmpTreeDTO {Name = item.ProjectName,Children=children});
+                tree.Add(new ProjectEmpTreeDTO {Name = "[CLIENT] "+c.ClientName,Children=ch});
             }
             
             if (List.Count < 0)
@@ -122,6 +130,23 @@ namespace BVPortalApi.Controllers
             {
                 return tree;
             }
+        }
+
+        [HttpGet("GetProjectEmpTreeSummary")]
+        public async Task<ActionResult<ProjectEmpTreeSummaryDTO>> GetProjectEmpTreeSummary()
+        {
+            ProjectEmpTreeSummaryDTO sum = new  ProjectEmpTreeSummaryDTO();
+            var ClientList = await DBContext.Client.Select(x=>x).ToListAsync();
+            sum.ActiveClientCount = ClientList.Where(x=>x.Status=="ACTIVE").Count();
+            sum.InactiveClientCount = ClientList.Where(x=>x.Status=="INACTIVE").Count();
+            sum.TotalClientCount = ClientList.Count();
+            
+            sum.ProjectEmpCount = DBContext.ProjectAssignment.GroupBy(
+                p => p.Project.ProjectName, 
+                p => p.EmployeeId,
+                (key, g) => new ProjectEmpCount{ ProjectName = key, EmployeeCount = g.Count() }).ToList();
+            
+            return sum;
         }
     }
 }
