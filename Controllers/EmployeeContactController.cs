@@ -32,7 +32,9 @@ namespace BVPortalApi.Controllers
                     EmployeeName = s.Employee.FirstName + " "+ s.Employee.LastName,
                     PersonalEmailId = s.PersonalEmailId,
                     PhoneNumber = s.PhoneNumber,
-                    WorkEmail = s.WorkEmail
+                    WorkEmail = s.WorkEmail,
+                    EmergencyContactName = s.EmergencyContactName,
+                    EmergencyContactNumber = s.EmergencyContactNumber
                 }
             ).ToListAsync();
             
@@ -57,7 +59,9 @@ namespace BVPortalApi.Controllers
                     EmployeeName = s.Employee.FirstName + " "+ s.Employee.LastName,
                     PersonalEmailId = s.PersonalEmailId,
                     PhoneNumber = s.PhoneNumber,
-                    WorkEmail = s.WorkEmail
+                    WorkEmail = s.WorkEmail,
+                    EmergencyContactName = s.EmergencyContactName,
+                    EmergencyContactNumber = s.EmergencyContactNumber
                 }
             ).FirstOrDefaultAsync();
             
@@ -76,7 +80,9 @@ namespace BVPortalApi.Controllers
                     EmployeeId = s.EmployeeId,
                     PersonalEmailId = s.PersonalEmailId,
                     PhoneNumber = s.PhoneNumber,
-                    WorkEmail = s.WorkEmail
+                    WorkEmail = s.WorkEmail,
+                    EmergencyContactName = s.EmergencyContactName,
+                    EmergencyContactNumber = s.EmergencyContactNumber
             };
             DBContext.EmployeeContact.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -88,6 +94,8 @@ namespace BVPortalApi.Controllers
             entity.PersonalEmailId = Employee.PersonalEmailId;
             entity.PhoneNumber = Employee.PhoneNumber;
             entity.WorkEmail = Employee.WorkEmail;
+            entity.EmergencyContactName = Employee.EmergencyContactName;
+            entity.EmergencyContactNumber = Employee.EmergencyContactNumber;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
