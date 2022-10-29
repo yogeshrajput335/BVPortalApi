@@ -140,6 +140,7 @@ namespace BVPortalApi.Controllers
             sum.ActiveClientCount = ClientList.Where(x=>x.Status=="ACTIVE").Count();
             sum.InactiveClientCount = ClientList.Where(x=>x.Status=="INACTIVE").Count();
             sum.TotalClientCount = ClientList.Count();
+           
             
             sum.ProjectEmpCount = DBContext.ProjectAssignment.GroupBy(
                 p => p.Project.ProjectName, 
@@ -148,5 +149,30 @@ namespace BVPortalApi.Controllers
             
             return sum;
         }
-    }
+        
+        [HttpGet("GetProjectCount")]
+        public async Task<ActionResult<ProjectCountDTO>> GetProjectCount()
+        {
+            ProjectCountDTO sum = new  ProjectCountDTO();
+            var ProjectList = await DBContext.Project.Select(x=>x).ToListAsync();
+            sum.NewProjectsCount = ProjectList.Where(x=>x.Status=="NEW").Count();
+            sum.ApprovedProjectsCount = ProjectList.Where(x=>x.Status=="APPROVED").Count();
+            sum.RejectedProjectsCount = ProjectList.Where(x=>x.Status=="REJECTED").Count();
+            
+             return sum;
+        }
+        [HttpGet("GetEmployeeCount")]
+        public async Task<ActionResult<EmployeeCountDTO>> GetEmployeeCount()
+        {
+         {
+            EmployeeCountDTO sum = new  EmployeeCountDTO();
+            var EmployeeList = await DBContext.Employee.Select(x=>x).ToListAsync();
+            sum.ActiveEmployeeCount = EmployeeList.Where(x=>x.Status=="ACTIVE").Count();
+            sum.InactiveEmployeeCount = EmployeeList.Where(x=>x.Status=="INACTIVE").Count();
+             return sum;
+
+             
+        }
+}
+}
 }

@@ -17,7 +17,18 @@ namespace BVPortalApi.DTO
         public List<ProjectEmpCount> ProjectEmpCount {get; set;}
     }
     public class ProjectEmpCount{
-        public string ProjectName { get; set; }
+        public string ? ProjectName { get; set; }
         public int EmployeeCount { get; set; }
     }
+    public class ProjectCountDTO{
+        public int NewProjectsCount { get; set; }
+        public int ApprovedProjectsCount { get; set; }
+        public int RejectedProjectsCount { get; set; }
+       
+    }
+    public class EmployeeCountDTO{
+        public int ActiveEmployeeCount { get; set; }
+        public int InactiveEmployeeCount { get; set; }
+    }
+   
 }
