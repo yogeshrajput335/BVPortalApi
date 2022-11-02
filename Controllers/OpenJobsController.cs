@@ -25,7 +25,7 @@ namespace BVPortalApi.Controllers
         [HttpGet("GetOpenjobs")]
         public async Task<ActionResult<List<OpenjobsDTO>>> Get()
         {
-            var List = await DBContext.Openjobs.Select(
+            var List = await DBContext.Openjobs.Where(x=>x.Status=="ACTIVE").Select(
                 s => new OpenjobsDTO
                 {
                     Id = s.Id,
@@ -70,6 +70,14 @@ namespace BVPortalApi.Controllers
             entity.StartDate = Openjobs.StartDate;
             entity.Country = Openjobs.Country;
             entity.Status = Openjobs.Status;
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+        [HttpPut("UpdateStatusInactiveOpenjobs/{Id}")]
+        public async Task<HttpStatusCode> UpdateStatusInactiveOpenjobs(int Id ) {
+            var entity = await DBContext.Openjobs.FirstOrDefaultAsync(s => s.Id == Id);
+            
+            entity.Status = "INACTIVE";
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
