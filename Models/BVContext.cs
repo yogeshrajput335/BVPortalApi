@@ -42,6 +42,8 @@ namespace BVPortalApi.Models
         public DbSet<ProjectAssignment> ProjectAssignment { get; set; }
         public DbSet<TimesheetApproval> TimesheetApproval { get; set; }
         public DbSet<TimesheetDetail> TimesheetDetail { get; set; }
+        public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<InvoiceProduct> InvoiceProduct { get; set; }
 
     }
 }

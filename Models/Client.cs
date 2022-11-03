@@ -15,5 +15,6 @@ namespace BVPortalApi.Models
         public string? Address { get; set; }
         public string? Status { get; set; }
         public ICollection<Project> Project { get; set; }
+        public ICollection<Invoice> Invoice { get; set; }
     }
 }

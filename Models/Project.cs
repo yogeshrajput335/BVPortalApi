@@ -19,5 +19,6 @@ namespace BVPortalApi.Models
         public ICollection<Timesheet> Timesheet { get; set; }
         public ICollection<ProjectAssignment> ProjectAssignment { get; set; }
         public ICollection<TimesheetDetail> TimesheetDetail { get; set; }
+        public ICollection<InvoiceProduct> InvoiceProduct { get; set; }
     }
 }
