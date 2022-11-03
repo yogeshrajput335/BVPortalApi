@@ -47,6 +47,39 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+        [HttpGet("GetDeletedjobs")]
+        public async Task<ActionResult<List<OpenjobsDTO>>> GetDeletedjobs()
+        {
+            var List = await DBContext.Openjobs.Where(x=>x.Status=="" || x.Status=="INACTIVE").Select(
+                s => new OpenjobsDTO
+                {
+                    Id = s.Id,
+                    JobName = s.JobName,
+                    Profile = s.Profile,
+                    Description = s.Description,
+                    StartDate = s.StartDate,
+                    Country = s.Country,
+                    Status = s.Status
+                }
+            ).ToListAsync();
+            
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+        [HttpPut("UpdateStatusActiveOpenjobs/{Id}")]
+        public async Task<HttpStatusCode> UpdateStatusActiveOpenjobs(int Id ) {
+            var entity = await DBContext.Openjobs.FirstOrDefaultAsync(s => s.Id == Id);
+            
+            entity.Status = "ACTIVE";
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
         [HttpPost("InsertOpenjobs")]
         public async Task < HttpStatusCode > InsertOpenjobs(OpenjobsDTO s) {
             var entity = new Openjobs() {
