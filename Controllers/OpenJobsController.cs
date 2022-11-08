@@ -124,5 +124,25 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        [HttpPost("ApplyJob")]
+        public async Task < HttpStatusCode > ApplyJob(ApplyJobDTO s) {
+            var emp = DBContext.Employee.Where(x=>x.Id==s.EmployeeId).FirstOrDefault();
+            //  : Add jobid in candidate  
+                
+            
+           var entity = new Candidate() {
+                    JobId = s.JobId,
+                    FirstName = emp.FirstName,
+                    LastName = emp.LastName,
+                    PhoneNo = emp.PhoneNumber,
+                    Email=emp.Email,
+                    Status = "SELF-REFER",
+                    ReferBy = emp.Id
+            };
+            DBContext.Candidates.Add(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.Created;
+        }
     }
+    
 }

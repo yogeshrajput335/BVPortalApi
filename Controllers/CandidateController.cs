@@ -35,7 +35,9 @@ namespace BVPortalApi.Controllers
                     Email=s.Email,
                     Status = s.Status,
                     ReferBy = s.ReferBy,
-                    ReferByName = s.Employee.FirstName + " "+s.Employee.LastName
+                    ReferByName = s.Employee.FirstName + " "+s.Employee.LastName,
+                    JobId = s.JobId,
+                    JobName = s.Openjobs.JobName
                 }
             ).ToListAsync();
             

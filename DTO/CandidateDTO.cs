@@ -15,5 +15,7 @@ namespace BVPortalApi.DTO
         public string? Status { get; set; }
         public string? ReferByName { get; set; }
         public int? ReferBy { get; set; }
+        public string? JobName { get; set; }
+        public int? JobId { get; set; }
     }
 }
