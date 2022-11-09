@@ -14,6 +14,7 @@ namespace BVPortalApi.Models
         public DateTime CreatedDate { get; set; }
         public DateTime DueDate { get; set; }
         public int ClientId { get; set; }
+        public string? ClientName { get; set; }
         public string? FromLine1 { get; set; }
         public string? FromLine2 { get; set; }
         public string? FromLine3 { get; set; }

@@ -33,6 +33,7 @@ namespace BVPortalApi.Controllers
                     CreatedDate = s.CreatedDate,
                     DueDate = s.DueDate,
                     ClientId = s.ClientId,
+                    ClientName = s.Client.ClientName,
                     FromLine1 = s.FromLine1,
                     FromLine2 = s.FromLine2,
                     FromLine3 = s.FromLine3,
