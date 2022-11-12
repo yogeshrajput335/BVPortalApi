@@ -51,6 +51,35 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+        [HttpGet("GetInvoiceById/{id}")]
+        public async Task<ActionResult<InvoiceDTO>> GetInvoiceById(int id)
+        {
+            var List = await DBContext.Invoice.Where(x=>x.Id == id).Select(
+                s => new InvoiceDTO
+                {
+                    Id = s.Id,
+                    InvoiceNo = s.InvoiceNo,
+                    CreatedDate = s.CreatedDate,
+                    DueDate = s.DueDate,
+                    ClientId = s.ClientId,
+                    ClientName = s.Client.ClientName,
+                    FromLine1 = s.FromLine1,
+                    FromLine2 = s.FromLine2,
+                    FromLine3 = s.FromLine3,
+                    Term = s.Term,
+                    Status = s.Status
+                }
+            ).FirstOrDefaultAsync();
+            
+            if (List==null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
         [HttpPost("InsertInvoice")]
         public async Task < HttpStatusCode > InsertInvoice(InvoiceDTO s) {
             var entity = new Invoice() {
