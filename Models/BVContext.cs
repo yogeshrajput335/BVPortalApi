@@ -48,6 +48,5 @@ namespace BVPortalApi.Models
         public DbSet<ClientTermHistory> ClientTermHistory { get; set; }
         public DbSet<EmpClientPerHour> EmpClientPerHour { get; set; }
         public DbSet<EmpClientPerHourHistory> EmpClientPerHourHistory { get; set; }
-
     }
 }
