@@ -100,8 +100,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
-
-        [HttpPut("Invoice")]
+        [HttpPut("UpdateInvoice")]
         public async Task<HttpStatusCode> UpdateInvoice(InvoiceDTO Invoice) {
             var entity = await DBContext.Invoice.FirstOrDefaultAsync(s => s.Id == Invoice.Id);
             entity.InvoiceNo = Invoice.InvoiceNo;
