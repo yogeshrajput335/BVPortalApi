@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
         [HttpGet("GetInvoice")]
         public async Task<ActionResult<List<InvoiceDTO>>> Get()
         {
@@ -51,6 +52,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpGet("GetInvoiceById/{id}")]
         public async Task<ActionResult<InvoiceDTO>> GetInvoiceById(int id)
         {
@@ -80,6 +82,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertInvoice")]
         public async Task < HttpStatusCode > InsertInvoice(InvoiceDTO s) {
             var entity = new Invoice() {
@@ -113,6 +116,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteInvoice/{Id}")]
         public async Task < HttpStatusCode > DeleteInvoice(int Id) {
             var entity = new Invoice() {

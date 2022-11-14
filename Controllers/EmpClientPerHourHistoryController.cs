@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
         [HttpGet("GetEmpClientPerHourHistory")]
         public async Task<ActionResult<List<EmpClientPerHourHistoryDTO>>> Get()
         {
@@ -48,6 +49,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertEmpClientPerHourHistory")]
         public async Task < HttpStatusCode > InsertEmpClientPerHourHistory(EmpClientPerHourHistoryDTO s) {
             var entity = new EmpClientPerHourHistory() {
@@ -63,6 +65,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateEmpClientPerHourHistory")]
         public async Task<HttpStatusCode> UpdateEmpClientPerHourHistory(EmpClientPerHourHistoryDTO EmpClientPerHourHistory) {
             var entity = await DBContext.EmpClientPerHourHistory.FirstOrDefaultAsync(s => s.Id == EmpClientPerHourHistory.Id);
@@ -76,6 +79,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteEmpClientPerHourHistory/{Id}")]
         public async Task < HttpStatusCode > DeleteEmpClientPerHourHistory(int Id) {
             var entity = new EmpClientPerHourHistory() {

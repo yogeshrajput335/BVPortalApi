@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
          [HttpGet("GetClientTerm")]
         public async Task<ActionResult<List<ClientTermDTO>>> Get()
         {
@@ -44,6 +45,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertClientTerm")]
         public async Task < HttpStatusCode > InsertClientTerm(ClientTermDTO s) {
             var entity = new ClientTerm() {
@@ -55,6 +57,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateClientTerm")]
         public async Task<HttpStatusCode> UpdateClientTerm(ClientTermDTO ClientTerm) {
             var entity = await DBContext.ClientTerm.FirstOrDefaultAsync(s => s.Id == ClientTerm.Id);
@@ -64,6 +67,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteClientTerm/{Id}")]
         public async Task < HttpStatusCode > DeleteClientTerm(int Id) {
             var entity = new ClientTerm() {

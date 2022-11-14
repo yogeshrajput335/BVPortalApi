@@ -24,6 +24,7 @@ namespace BVPortalApi.Controllers
             this.DBContext = DBContext;
             this.emailService = emailService;
         }
+
         [HttpGet("GetUsers")]
         public async Task<ActionResult<List<UserDTO>>> Get()
         {
@@ -50,6 +51,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertUser")]
         public async Task < HttpStatusCode > InsertUser(UserDTO User) {
             var entity = new User() {
@@ -64,6 +66,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateUser")]
         public async Task<HttpStatusCode> UpdateUser(UserDTO User) {
             var entity = await DBContext.Users.FirstOrDefaultAsync(s => s.Id == User.Id);
@@ -76,6 +79,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+
         [HttpDelete("DeleteUser/{Id}")]
         public async Task < HttpStatusCode > DeleteUser(int Id) {
             var entity = new User() {
@@ -86,6 +90,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpPost("VerifyUser")]
         public async Task<UserWithToken> VerifyUser([FromBody] UserDTO u1) {
             if(u1.Username=="super" && u1.Password=="super")
