@@ -20,6 +20,7 @@ namespace BVPortalApi.Models
         public string? FromLine3 { get; set; }
         public string? Term { get; set; }
         public string? Status { get; set; }
+        public List<InvoiceProductDTO> Products{ get; set; }
         
     }
 }

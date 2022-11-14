@@ -69,7 +69,12 @@ namespace BVPortalApi.Controllers
                     FromLine2 = s.FromLine2,
                     FromLine3 = s.FromLine3,
                     Term = s.Term,
-                    Status = s.Status
+                    Status = s.Status,
+                    // Products = s.InvoiceProduct.Select(s => new InvoiceDTO
+                    //             {
+                    //                 Emploe
+                    //             })
+
                 }
             ).FirstOrDefaultAsync();
             
@@ -97,6 +102,20 @@ namespace BVPortalApi.Controllers
                     Status = s.Status
             };
             DBContext.Invoice.Add(entity);
+            await DBContext.SaveChangesAsync();
+            List<InvoiceProduct> p = s.Products.Select(
+                s => new InvoiceProduct
+                {
+                    Id = s.Id,
+                    EmployeeId = s.EmployeeId,
+                    InvoiceId = entity.Id,
+                    ProjectId = 1,
+                    PerHourCost = s.PerHourCost,
+                    TotalHours = s.TotalHours,
+                    TotalCost = s.TotalCost
+                }
+            ).ToList();
+            DBContext.InvoiceProduct.AddRange(p);
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
