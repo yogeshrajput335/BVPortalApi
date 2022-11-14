@@ -84,6 +84,17 @@ namespace BVPortalApi.Controllers
             }
             else
             {
+                List.Products = DBContext.InvoiceProduct.Where(x=>x.InvoiceId == id).Select(
+                s => new InvoiceProductDTO
+                {
+                    Id = s.Id,
+                    Employee = s.Employee.FirstName+" "+s.Employee.LastName,
+                    Project = s.Project.ProjectName,
+                    ProjectType = s.Project.ProjectType,
+                    PerHourCost = s.PerHourCost,
+                    TotalHours = s.TotalHours,
+                    TotalCost = s.TotalCost,
+                }).ToList();
                 return List;
             }
         }
@@ -109,7 +120,7 @@ namespace BVPortalApi.Controllers
                     Id = s.Id,
                     EmployeeId = s.EmployeeId,
                     InvoiceId = entity.Id,
-                    ProjectId = 1,
+                    ProjectId = s.ProjectId,
                     PerHourCost = s.PerHourCost,
                     TotalHours = s.TotalHours,
                     TotalCost = s.TotalCost

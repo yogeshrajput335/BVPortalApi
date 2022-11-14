@@ -87,5 +87,65 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+
+        [HttpPost("SetClientPerHour/{Id}/{perHour}/{client}")]
+        public async Task<HttpStatusCode> SetClientPerHour(int Id, int perHour, int client)
+        {
+            float oldPerHour = 0;
+            var entity = await DBContext.EmpClientPerHour.FirstOrDefaultAsync(s => s.EmployeeId == Id && s.ClientId==client);
+            if (entity == null)
+            {
+                EmpClientPerHour ct = new EmpClientPerHour();
+                ct.EmployeeId = Id;
+                ct.ClientId = client;
+                ct.PerHour = perHour;
+                DBContext.EmpClientPerHour.Add(ct);
+            }
+            else if (entity != null && entity.PerHour != perHour)
+            {
+                oldPerHour = entity.PerHour;
+                entity.PerHour = perHour;
+            }
+            EmpClientPerHourHistory cth = new EmpClientPerHourHistory();
+            cth.ClientId = client;
+            cth.EmployeeId = Id;
+            cth.OldPerHour = oldPerHour;
+            cth.NewPerHour = perHour;
+            cth.ReasonForChange = ""; // TODO
+            cth.ChangeDate = DateTime.Now;
+            cth.ChangeBy = ""; // TODO
+            DBContext.EmpClientPerHourHistory.Add(cth);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+
+        [HttpGet("GetEmpClientPerHourHistory/{id}")]
+        public async Task<ActionResult<List<EmpClientPerHourHistory>>> GetEmpClientPerHourHistory(int id)
+        {
+            var List = await DBContext.EmpClientPerHourHistory.Where(x => x.EmployeeId == id).ToListAsync();
+
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+        [HttpGet("GetEmpClientPerHour")]
+        public async Task<ActionResult<List<EmpClientPerHour>>> GetEmpClientPerHour(int id)
+        {
+            var List = await DBContext.EmpClientPerHour.ToListAsync();
+
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
     }
 }
