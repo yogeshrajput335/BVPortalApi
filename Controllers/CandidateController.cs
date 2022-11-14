@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
         [HttpGet("GetCandidates")]
         public async Task<ActionResult<List<CandidateDTO>>> Get()
         {
@@ -50,6 +51,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertCandidate")]
         public async Task < HttpStatusCode > InsertCandidate(CandidateDTO s) {
             var entity = new Candidate() {
@@ -65,6 +67,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateCandidate")]
         public async Task<HttpStatusCode> UpdateCandidaet(CandidateDTO Candidate) {
             var entity = await DBContext.Candidates.FirstOrDefaultAsync(s => s.Id == Candidate.Id);
@@ -77,6 +80,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteCandidate/{Id}")]
         public async Task < HttpStatusCode > DeleteCandidate(int Id) {
             var entity = new Candidate() {

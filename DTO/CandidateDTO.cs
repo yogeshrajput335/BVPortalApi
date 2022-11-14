@@ -7,7 +7,7 @@ namespace BVPortalApi.DTO
 {
     public class CandidateDTO
     {
-       public int Id { get; set; }
+        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName{ get; set; }
         public string? PhoneNo{ get; set; }

@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
         [HttpGet("GetEmpClientPerHour")]
         public async Task<ActionResult<List<EmpClientPerHourDTO>>> Get()
         {
@@ -44,6 +45,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertEmpClientPerHour")]
         public async Task < HttpStatusCode > InsertEmpClientPerHour(EmpClientPerHourDTO s) {
             var entity = new EmpClientPerHour() {
@@ -55,6 +57,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateEmpClientPerHour")]
         public async Task<HttpStatusCode> UpdateEmpClientPerHour(EmpClientPerHourDTO EmpClientPerHour) {
             var entity = await DBContext.EmpClientPerHour.FirstOrDefaultAsync(s => s.Id == EmpClientPerHour.Id);
@@ -64,6 +67,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteEmpClientPerHour/{Id}")]
         public async Task < HttpStatusCode > DeleteEmpClientPerHour(int Id) {
             var entity = new EmpClientPerHour() {

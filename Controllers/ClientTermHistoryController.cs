@@ -22,6 +22,7 @@ namespace BVPortalApi.Controllers
         {
             this.DBContext = DBContext;
         }
+
         [HttpGet("GetClientClientTermHistory")]
         public async Task<ActionResult<List<ClientTermHistoryDTO>>> Get()
         {
@@ -49,6 +50,7 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
+
         [HttpPost("InsertClientTermHistory")]
         public async Task < HttpStatusCode > InsertClientTermHistory(ClientTermHistoryDTO s) {
             var entity = new ClientTermHistory() {
@@ -65,6 +67,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
+
         [HttpPut("UpdateClientTermHistory")]
         public async Task<HttpStatusCode> UpdateClientTermHistory(ClientTermHistoryDTO ClientTermHistory) {
             var entity = await DBContext.ClientTermHistory.FirstOrDefaultAsync(s => s.Id == ClientTermHistory.Id);
@@ -79,6 +82,7 @@ namespace BVPortalApi.Controllers
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+        
         [HttpDelete("DeleteClientTermHistory/{Id}")]
         public async Task < HttpStatusCode > DeleteClientTermHistory(int Id) {
             var entity = new ClientTermHistory() {

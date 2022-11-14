@@ -9,6 +9,6 @@ namespace BVPortalApi.DTO
     {
         public int JobId { get; set; }
         public int EmployeeId { get; set; }
-        
+
     }
 }
