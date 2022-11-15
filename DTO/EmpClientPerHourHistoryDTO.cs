@@ -15,5 +15,7 @@ namespace BVPortalApi.DTO
         public string? ReasonForChange { get; set; }
         public DateTime ChangeDate { get; set; }
         public string? ChangeBy { get; set; }
+        public string Employee { get; set; }
+        public string Client { get; set; }
     }
 }

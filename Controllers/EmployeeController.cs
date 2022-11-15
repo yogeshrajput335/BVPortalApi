@@ -120,10 +120,23 @@ namespace BVPortalApi.Controllers
         }
 
         [HttpGet("GetEmpClientPerHourHistory/{id}")]
-        public async Task<ActionResult<List<EmpClientPerHourHistory>>> GetEmpClientPerHourHistory(int id)
+        public async Task<ActionResult<List<EmpClientPerHourHistoryDTO>>> GetEmpClientPerHourHistory(int id)
         {
-            var List = await DBContext.EmpClientPerHourHistory.Where(x => x.EmployeeId == id).ToListAsync();
-
+            var List = await DBContext.EmpClientPerHourHistory.Where(x => x.EmployeeId == id).Select(
+                s => new EmpClientPerHourHistoryDTO
+                {
+                    Id = s.Id,
+                    EmployeeId = s.EmployeeId,
+                    ClientId = s.ClientId,
+                    OldPerHour = s.OldPerHour,
+                    NewPerHour = s.NewPerHour,
+                    Employee = s.Employee.FirstName+ " "+s.Employee.LastName,
+                    Client = s.Client.ClientName,
+                    ReasonForChange = s.ReasonForChange,
+                    ChangeDate = s.ChangeDate,
+                    ChangeBy = s.ChangeBy,
+                }
+            ).ToListAsync();
             if (List.Count < 0)
             {
                 return NotFound();
@@ -134,9 +147,19 @@ namespace BVPortalApi.Controllers
             }
         }
         [HttpGet("GetEmpClientPerHour")]
-        public async Task<ActionResult<List<EmpClientPerHour>>> GetEmpClientPerHour(int id)
+        public async Task<ActionResult<List<EmpClientPerHourDTO>>> GetEmpClientPerHour(int id)
         {
-            var List = await DBContext.EmpClientPerHour.ToListAsync();
+            var List = await DBContext.EmpClientPerHour.Select(
+                s => new EmpClientPerHourDTO
+                {
+                    Id = s.Id,
+                    EmployeeId = s.EmployeeId,
+                    ClientId = s.ClientId,
+                    PerHour = s.PerHour,
+                    Employee = s.Employee.FirstName+ " "+s.Employee.LastName,
+                    Client = s.Client.ClientName
+                }
+            ).ToListAsync();
 
             if (List.Count < 0)
             {

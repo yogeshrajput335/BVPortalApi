@@ -16,8 +16,8 @@ namespace BVPortalApi.Models
         public float PerHourCost { get; set; }
         public int TotalHours { get; set; }
         public float TotalCost { get; set; }
-        public string Employee { get; set; }
-        public string Project { get; set; }
-        public string ProjectType { get; set; }
+        public string? Employee { get; set; }
+        public string? Project { get; set; }
+        public string? ProjectType { get; set; }
     }    
 }
