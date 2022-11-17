@@ -18,4 +18,8 @@ namespace BVPortalApi.DTO
         public string? TermText { get; set; }
         
     }
+    public class SetTermDTO{
+        public string? ReasonForChange { get; set; }
+        public int? ChangeBy { get; set; }
+    }
 }

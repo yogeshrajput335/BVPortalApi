@@ -89,7 +89,7 @@ namespace BVPortalApi.Controllers
         }
 
         [HttpPost("SetClientPerHour/{Id}/{perHour}/{client}")]
-        public async Task<HttpStatusCode> SetClientPerHour(int Id, int perHour, int client)
+        public async Task<HttpStatusCode> SetClientPerHour(int Id, int perHour, int client,[FromBody] SetTermDTO setTerm)
         {
             float oldPerHour = 0;
             var entity = await DBContext.EmpClientPerHour.FirstOrDefaultAsync(s => s.EmployeeId == Id && s.ClientId==client);
@@ -106,14 +106,15 @@ namespace BVPortalApi.Controllers
                 oldPerHour = entity.PerHour;
                 entity.PerHour = perHour;
             }
+            var emp = await DBContext.Employee.FirstOrDefaultAsync(s => s.Id == setTerm.ChangeBy);
             EmpClientPerHourHistory cth = new EmpClientPerHourHistory();
             cth.ClientId = client;
             cth.EmployeeId = Id;
             cth.OldPerHour = oldPerHour;
             cth.NewPerHour = perHour;
-            cth.ReasonForChange = ""; // TODO
+            cth.ReasonForChange = setTerm.ReasonForChange; 
             cth.ChangeDate = DateTime.Now;
-            cth.ChangeBy = ""; // TODO
+            cth.ChangeBy = emp.FirstName+" "+emp.LastName; 
             DBContext.EmpClientPerHourHistory.Add(cth);
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;

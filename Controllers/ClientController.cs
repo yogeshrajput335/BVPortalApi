@@ -97,7 +97,7 @@ namespace BVPortalApi.Controllers
         }
         
         [HttpPost("SetTerm/{Id}/{Term}")]
-        public async Task<HttpStatusCode> SetTerm(int Id, int Term)
+        public async Task<HttpStatusCode> SetTerm(int Id, int Term,[FromBody] SetTermDTO setTerm)
         {
             int oldTerm = 0;
             var entity = await DBContext.ClientTerm.FirstOrDefaultAsync(s => s.ClientId == Id);
@@ -115,15 +115,16 @@ namespace BVPortalApi.Controllers
                 entity.TermText = Term + "d";
                 entity.Term = Term;
             }
+            var emp = await DBContext.Employee.FirstOrDefaultAsync(s => s.Id == setTerm.ChangeBy);
             ClientTermHistory cth = new ClientTermHistory();
             cth.ClientId = Id;
             cth.OldTermText = oldTerm + "d";
             cth.OldTerm = oldTerm;
             cth.NewTermText = Term + "d";
             cth.NewTerm = Term;
-            cth.ReasonForChange = ""; // TODO
+            cth.ReasonForChange = setTerm.ReasonForChange; 
             cth.ChangeDate = DateTime.Now;
-            cth.ChangeBy = ""; // TODO
+            cth.ChangeBy = emp.FirstName+" "+emp.LastName; 
             DBContext.ClientTermHistory.Add(cth);
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
