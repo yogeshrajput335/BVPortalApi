@@ -52,6 +52,33 @@ namespace BVPortalApi.Controllers
             }
         }
 
+        [HttpGet("GetUsers/{Id}")]
+        public async Task<ActionResult<UserDTO>> Get(int Id)
+        {
+            var List = await DBContext.Users.Where(x=>x.EmployeeId==Id).Select(
+                s => new UserDTO
+                {
+                    Id = s.Id,
+                    Username = s.Username,
+                    Password = s.Password,
+                    UserType = s.UserType,
+                    Email = s.Email,
+                    Status = s.Status,
+                    EmployeeId = s.EmployeeId,
+                    Employee = s.Employee.FirstName+ " "+s.Employee.LastName
+                }
+            ).FirstOrDefaultAsync();
+            
+            if (List==null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+
         [HttpPost("InsertUser")]
         public async Task < HttpStatusCode > InsertUser(UserDTO User) {
             var entity = new User() {
