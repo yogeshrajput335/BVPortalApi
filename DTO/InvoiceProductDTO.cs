@@ -10,9 +10,9 @@ namespace BVPortalApi.Models
     public class InvoiceProductDTO
     {
         public int Id { get; set; }
-        public int InvoiceId { get; set; }
-        public int EmployeeId { get; set; }
-        public int ProjectId { get; set; }
+        public int? InvoiceId { get; set; }
+        public int? EmployeeId { get; set; }
+        public int? ProjectId { get; set; }
         public float PerHourCost { get; set; }
         public int TotalHours { get; set; }
         public float TotalCost { get; set; }

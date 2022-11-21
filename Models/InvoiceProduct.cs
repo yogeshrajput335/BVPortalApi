@@ -12,16 +12,16 @@ namespace BVPortalApi.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Invoice")]
-        public int InvoiceId { get; set; }
+        public int? InvoiceId { get; set; }
         [ForeignKey("Employee")]
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
         [ForeignKey("Project")]
-        public int ProjectId { get; set; }
+        public int? ProjectId { get; set; }
         public float PerHourCost { get; set; }
         public int TotalHours { get; set; }
         public float TotalCost { get; set; }
-        public Invoice Invoice { get; set; }
-        public Employee Employee { get; set; }
-        public Project Project { get; set; }
+        public virtual Invoice Invoice { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Project Project { get; set; }
     }
 }
