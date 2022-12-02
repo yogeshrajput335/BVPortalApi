@@ -54,3 +54,6 @@ Global privileges : Check all
  Shift + Alt + F
  '''
 
+# ADD PACKAGE
+* dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 6.0.11
+
