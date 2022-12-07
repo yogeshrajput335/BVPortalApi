@@ -31,6 +31,8 @@ namespace BVPortalApi.Controllers
                 {
                     Id = s.Id,
                     EmployeeId = s.EmployeeId,
+                    EmployeeName = s.Employee.FirstName+" "+s.Employee.LastName,
+                    ProjectName=s.Project.ProjectName,
                     ProjectId=s.ProjectId,
                     WeekEndingDate = s.WeekEndingDate,
                     Status = s.Status
