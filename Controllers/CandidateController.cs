@@ -39,7 +39,17 @@ namespace BVPortalApi.Controllers
                     ReferBy = s.ReferBy,
                     ReferByName = s.Employee.FirstName + " "+s.Employee.LastName,
                     JobId = s.JobId,
-                    JobName = s.Openjobs.JobName
+                    JobName = s.Openjobs.JobName,
+                    Technology = s.Technology,
+                    Visa = s.Visa,
+                    Rate = s.Rate,
+                    Client = s.Client,
+                    ClientContact = s.ClientContact,
+                    ClientMail = s.ClientMail,
+                    Vendor = s.Vendor,
+                    VendorContact = s.VendorContact,
+                    VendorMail = s.VendorMail,
+                    CreatedDate = s.CreatedDate
                 }
             ).ToListAsync();
             
@@ -62,7 +72,17 @@ namespace BVPortalApi.Controllers
                     PhoneNo = s.PhoneNo,
                     Email=s.Email,
                     Status = s.Status,
-                    ReferBy = s.ReferBy
+                    ReferBy = s.ReferBy,
+                    Technology = s.Technology,
+                    Visa = s.Visa,
+                    Rate = s.Rate,
+                    Client = s.Client,
+                    ClientContact = s.ClientContact,
+                    ClientMail = s.ClientMail,
+                    Vendor = s.Vendor,
+                    VendorContact = s.VendorContact,
+                    VendorMail = s.VendorMail,
+                    CreatedDate = s.CreatedDate
             };
             DBContext.Candidates.Add(entity);
             await DBContext.SaveChangesAsync();
@@ -78,6 +98,16 @@ namespace BVPortalApi.Controllers
             entity.Email = Candidate.Email;
             entity.Status = Candidate.Status;
             entity.ReferBy = Candidate.ReferBy;
+            entity.Technology = Candidate.Technology;
+            entity.Visa = Candidate.Visa;
+            entity.Rate = Candidate.Rate;
+            entity.Client = Candidate.Client;
+            entity.ClientContact = Candidate.ClientContact;
+            entity.ClientMail = Candidate.ClientMail;
+            entity.Vendor = Candidate.Vendor;
+            entity.VendorContact = Candidate.VendorContact;
+            entity.VendorMail = Candidate.VendorMail;
+            entity.CreatedDate = Candidate.CreatedDate;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
