@@ -48,16 +48,57 @@ namespace BVPortalApi.Controllers
                 return List;
             }
         }
-
-        [HttpPost("InsertTimesheet")]
-        public async Task < HttpStatusCode > InsertTimesheet(TimesheetDTO s) {
-            var entity = new Timesheet() {
+        
+        [HttpGet("GetTimesheetById/{id}")]
+        public async Task<ActionResult<TimesheetDTO>> GetTimesheetById(int id)
+        {
+            var List = await DBContext.Timesheet.Where(x=>x.Id==id).Select(
+                s => new TimesheetDTO
+                {
+                    Id = s.Id,
                     EmployeeId = s.EmployeeId,
+                    EmployeeName = s.Employee.FirstName+" "+s.Employee.LastName,
+                    ProjectName=s.Project.ProjectName,
                     ProjectId=s.ProjectId,
                     WeekEndingDate = s.WeekEndingDate,
-                    Status = s.Status
+                    Status = s.Status,
+                    Detail =s.TimesheetDetail.ToList()
+                }
+            ).FirstOrDefaultAsync();
+            
+            if (List==null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+
+        [HttpPost("InsertTimesheet")]
+        public async Task < HttpStatusCode > InsertTimesheet(TimesheetDataDTO s) {
+            List<TimesheetDetail> details = new List<TimesheetDetail>();
+            for (var i = 0; i < s.date.Count; i++)
+            {
+                var detail = new TimesheetDetail() {
+                    EmployeeId = s.timesheet.EmployeeId,
+                    ProjectId=s.timesheet.ProjectId,
+                    WorkDay=s.date[i],
+                    Hours = Convert.ToInt32(s.data[i])
+                };
+                details.Add(detail);
+            }
+            var entity = new Timesheet() {
+                    EmployeeId = s.timesheet.EmployeeId,
+                    ProjectId=s.timesheet.ProjectId,
+                    WeekEndingDate = s.timesheet.WeekEndingDate,
+                    Status = s.timesheet.Status,
+                    TimesheetDetail = details
             };
             DBContext.Timesheet.Add(entity);
+            
+            //DBContext.TimesheetDetail.AddRange(details);
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }

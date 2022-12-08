@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVPortalApi.Models;
 
 namespace BVPortalApi.DTO
 {
@@ -14,5 +15,11 @@ namespace BVPortalApi.DTO
         public string ProjectName { get; set; }
         public DateTime WeekEndingDate { get; set; }
         public string? Status { get; set; }
+        public List<TimesheetDetail> Detail { get; set; }
+    }
+    public class TimesheetDataDTO{
+        public TimesheetDTO timesheet { get; set; }
+        public List<DateTime> date { get; set; }
+        public List<string> data { get; set; }
     }
 }
