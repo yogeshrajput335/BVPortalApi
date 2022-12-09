@@ -15,7 +15,7 @@ namespace BVPortalApi.DTO
         public string ProjectName { get; set; }
         public DateTime WeekEndingDate { get; set; }
         public string? Status { get; set; }
-        public List<TimesheetDetail> Detail { get; set; }
+        public List<TimesheetDetail> Detail { get; set; } = null;
     }
     public class TimesheetDataDTO{
         public TimesheetDTO timesheet { get; set; }
