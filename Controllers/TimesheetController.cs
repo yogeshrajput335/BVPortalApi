@@ -35,6 +35,11 @@ namespace BVPortalApi.Controllers
                     ProjectName=s.Project.ProjectName,
                     ProjectId=s.ProjectId,
                     WeekEndingDate = s.WeekEndingDate,
+                    Month = s.Month,
+                    Year = s.Year,
+                    CreatedDate = s.CreatedDate,
+                    CreatedBy = s.CreatedBy,
+                    Duration = s.Duration,
                     Status = s.Status
                 }
             ).ToListAsync();
@@ -61,6 +66,11 @@ namespace BVPortalApi.Controllers
                     ProjectName=s.Project.ProjectName,
                     ProjectId=s.ProjectId,
                     WeekEndingDate = s.WeekEndingDate,
+                    Month = s.Month,
+                    Year = s.Year,
+                    CreatedDate = s.CreatedDate,
+                    CreatedBy = s.CreatedBy,
+                    Duration = s.Duration,
                     Status = s.Status,
                     Detail =s.TimesheetDetail.ToList()
                 }
@@ -93,6 +103,11 @@ namespace BVPortalApi.Controllers
                     EmployeeId = s.timesheet.EmployeeId,
                     ProjectId=s.timesheet.ProjectId,
                     WeekEndingDate = s.timesheet.WeekEndingDate,
+                    Month = s.timesheet.Month,
+                    Year = s.timesheet.Year,
+                    CreatedDate = s.timesheet.CreatedDate,
+                    CreatedBy = s.timesheet.CreatedBy,
+                    Duration = s.timesheet.Duration,
                     Status = s.timesheet.Status,
                     TimesheetDetail = details
             };
@@ -109,6 +124,11 @@ namespace BVPortalApi.Controllers
             entity.EmployeeId = Timesheet.EmployeeId;
             entity.ProjectId=Timesheet.ProjectId;
             entity.WeekEndingDate = Timesheet.WeekEndingDate;
+            entity.Month = Timesheet.Month;
+            entity.Year = Timesheet.Year;
+            entity.CreatedDate = Timesheet.CreatedDate;
+            entity.CreatedBy = Timesheet.CreatedBy;
+            entity.Duration = Timesheet.Duration;
             entity.Status = Timesheet.Status;
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
