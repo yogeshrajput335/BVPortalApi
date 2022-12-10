@@ -13,6 +13,7 @@ namespace BVPortalApi.DTO
         public int ProjectId { get; set; }
         public string EmployeeName { get; set; }
         public string ProjectName { get; set; }
+        public string? ClientName { get; set; }
         public DateTime WeekEndingDate { get; set; }
         public string Month { get; set; }
         public string Year { get; set; }

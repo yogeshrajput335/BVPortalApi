@@ -40,7 +40,8 @@ namespace BVPortalApi.Controllers
                     CreatedDate = s.CreatedDate,
                     CreatedBy = s.CreatedBy,
                     Duration = s.Duration,
-                    Status = s.Status
+                    Status = s.Status,
+                    ClientName =s.Project.Client.ClientName
                 }
             ).ToListAsync();
             
