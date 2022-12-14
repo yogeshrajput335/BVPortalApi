@@ -79,8 +79,16 @@ namespace BVPortalApi.Controllers
             var entity = new Asset() {
                 Id = Id
             };
-            DBContext.Assets.Attach(entity);
+            //DBContext.Assets.Attach(entity);
             DBContext.Assets.Remove(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+        [HttpPost("DeleteAssets")]
+        public async Task < HttpStatusCode > DeleteAsset(List<AssetDTO> Assets) {
+            var entities = await DBContext.Assets.Where(s => !Assets.Any(p2 => p2.Id == s.Id)).ToListAsync();
+            //DBContext.Assets.AttachRange(entities);
+            DBContext.Assets.RemoveRange(entities);
             await DBContext.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
